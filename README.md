@@ -1,6 +1,6 @@
 ## Demo 
 
-    https://react-filter.herokuapp.com/
+https://react-filter.herokuapp.com/
 
 ## Quickstart
 
