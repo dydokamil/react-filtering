@@ -1,23 +1,14 @@
-import React from 'react';
+import React from 'react'
+import StartupFilter from './StartupFilter'
+import StartupTable from './StartupTable'
 
-export class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = { filter: '' };
-  }
-
-  onFilterInputChange = (event) => {
-    this.setState({ filter: event.target.value });
-  };
-
-  render() {
-    return (
-      <div>
-        <input id="filter-input" onChange={this.onFilterInputChange} />
-      </div>
-    );
-  }
+const App = () => {
+  return (
+    <div>
+      <StartupFilter />
+      <StartupTable />
+    </div>
+  )
 }
 
-export default App;
+export default App

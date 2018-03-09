@@ -1,14 +1,16 @@
-import * as consts from '../actions/consts';
+import * as consts from '../actions/consts'
 
 export const startupReducer = (state, action) => {
   switch (action.type) {
     case consts.FETCH_STARTUPS:
-      return action.startups;
+      return action.startups
     case consts.FILTER_STARTUPS:
-      return state.filter(s => s.Name.toLowerCase().includes(action.criteria.toLowerCase()));
+      return state.filter(s =>
+        s.Name.toLowerCase().includes(action.criteria.toLowerCase())
+      )
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default startupReducer;
+export default startupReducer
