@@ -5,8 +5,16 @@ import * as actions from './startups';
 
 describe('fetchStartupActions', () => {
   it('creates an action to fetch startups', () => {
-    const expectedAction = { type: consts.FETCH_STARTUPS };
+    const startups = [{ SNo: 1 }, { SNo: 2 }];
+    const expectedAction = { type: consts.FETCH_STARTUPS, startups };
 
-    expect(actions.fetchStartups()).toEqual(expectedAction);
+    expect(actions.fetchStartups(startups)).toEqual(expectedAction);
+  });
+
+  it('creates an action to filter out the startups', () => {
+    const criteria = 'Filter';
+    const expectedAction = { type: consts.FILTER_STARTUPS, criteria };
+
+    expect(actions.filterStartups(criteria)).toEqual(expectedAction);
   });
 });

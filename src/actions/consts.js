@@ -1,1 +1,2 @@
 export const FETCH_STARTUPS = 'FETCH_STARTUPS';
+export const FILTER_STARTUPS = 'FILTER_STARTUPS';
