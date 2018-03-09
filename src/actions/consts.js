@@ -1,0 +1,1 @@
+export const FETCH_STARTUPS = 'FETCH_STARTUPS';
