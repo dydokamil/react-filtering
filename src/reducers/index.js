@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux'
+import startupReducer from './startupReducer'
 
-export default combineReducers({})
+export default combineReducers({
+  startups: startupReducer
+})

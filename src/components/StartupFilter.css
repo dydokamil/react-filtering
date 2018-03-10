@@ -1,0 +1,10 @@
+input {
+  margin-bottom: 1rem;
+  transition: all 1s;
+  width: 20%;
+  text-align: center;
+}
+
+input:focus {
+  width: 100%;
+}

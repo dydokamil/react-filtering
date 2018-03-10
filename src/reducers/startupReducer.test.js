@@ -7,22 +7,27 @@ import startupInfo from '../startup'
 
 describe('startupReducer', () => {
   const startups = [
-    { SNo: 1, Name: 'Startup', Funding: 10000 },
-    { SNo: 2, Name: 'Another Startup', Funding: 20000 }
+    { SNo: 1, StartupName: 'Startup', Funding: 10000 },
+    { SNo: 2, StartupName: 'Another Startup', Funding: 20000 }
   ]
   describe('when initializing', () => {
+    it('returns empty object', () => {
+      expect(startupReducer(undefined, {})).toEqual({
+        all: [],
+        filtered: []
+      })
+    })
+
     it('sets startups', () => {
       expect(
         startupReducer(undefined, startupActions.fetchStartups(startups))
-      ).toEqual(startups)
+      ).toEqual({ all: startups, filtered: startups })
     })
 
     it(`sets startups based on a file containing startup info of over 2000 entries`, () => {
       expect(
-        startupReducer(
-          undefined,
-          startupActions.fetchStartups({ startups: startupInfo })
-        ).startups.length
+        startupReducer(undefined, startupActions.fetchStartupsFromFile()).all
+          .length
       ).toBeGreaterThan(2000)
     })
 
@@ -30,7 +35,10 @@ describe('startupReducer', () => {
       const criteria = 'Another'
       it('filters out the startups that do not match the criteria', () => {
         expect(
-          startupReducer(startups, startupActions.filterStartups(criteria))
+          startupReducer(
+            { all: startups, filtered: startups },
+            startupActions.filterStartups(criteria)
+          ).filtered
         ).toEqual([startups[1]])
       })
     })

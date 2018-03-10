@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import * as consts from './consts'
 import * as actions from './startups'
+import startupsFromFile from '../startup'
 
 describe('startup actions', () => {
   it('creates an action to fetch startups', () => {
@@ -16,5 +17,14 @@ describe('startup actions', () => {
     const expectedAction = { type: consts.FILTER_STARTUPS, criteria }
 
     expect(actions.filterStartups(criteria)).toEqual(expectedAction)
+  })
+
+  it('creates an ction to fetch startups from a file', () => {
+    const expectedAction = {
+      type: consts.FETCH_STARTUPS,
+      startupsFromFile
+    }
+
+    expect(actions.fetchStartupsFromFile(startupsFromFile))
   })
 })

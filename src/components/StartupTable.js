@@ -1,29 +1,49 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchStartups } from '../actions/startups'
+import startups from '../startup'
+import './StartupTable.css'
 
 export class StartupTable extends React.Component {
-  constructor () {
-    super()
-
-    this.state = { filter: '' }
-  }
-
-  onFilterChange = event => {
-    this.setState({ filter: event.target.value })
-  }
-
   componentDidMount = () => {
-    this.props.fetchStartups()
+    this.props.fetchStartups(startups)
   }
 
   render () {
     return (
       <div>
-        <input id="filter-input" onChange={this.onFilterChange} />
+        <div className="table=responsive">
+          <table id="startup-table" className="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Startup Name</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.startups.filtered &&
+                this.props.startups.filtered.map(startup => {
+                  return (
+                    <tr key={startup.SNo}>
+                      <td>{startup.SNo}</td>
+                      <td>{startup.StartupName}</td>
+                      <td>{startup.CityLocation}</td>
+                    </tr>
+                  )
+                })}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
 }
 
-export default connect(null, { fetchStartups })(StartupTable)
+export const mapStateToProps = state => {
+  return {
+    startups: state.startups
+  }
+}
+
+export default connect(mapStateToProps, { fetchStartups })(StartupTable)
